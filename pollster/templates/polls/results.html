@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="header">{{ question.question_text }}</h1>
+    <ul class="question-results">
+        {% for choice in question.choice_set.all %}
+        <li class="flex-2">
+            <span>{{ choice.choice_text }}</span> 
+            <span>{{ choice.votes }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

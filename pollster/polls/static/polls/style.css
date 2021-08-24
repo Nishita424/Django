@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-width: 600px;
+    max-height: 500px;
+    margin: auto;
+    margin-top: 100px;
+    overflow: auto;
+    height: 400px;
+    text-align: center;
+}
+
+.question-results {
+    width: 300px;
+    margin: auto;
+    
+}
+
+.flex-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" type='text/css' href="{% static 'polls/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="header">Polls</h1>
+    {% if latest_questions %}
+        {% for question in latest_questions %}
+            <p>{{ question.question_text }}</p>
+            <a href="{% url 'polls:detail' question.id %}">Vote Now</a>
+            <a href="{% url 'polls:results' question.id %}">Show Results</a>
+        {% endfor %}
+    {% else %}
+        <p>No Polls Available</p>
+    {% endif %}
+{% endblock %}
