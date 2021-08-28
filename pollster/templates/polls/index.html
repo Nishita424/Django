@@ -1,19 +1,35 @@
 {% extends 'base.html' %}
 
-{% block style %}
+<!-- {% block style %}
     {% load static %}
     <link rel="stylesheet" type='text/css' href="{% static 'polls/style.css' %}">
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
-    <h1 class="header">Polls</h1>
-    {% if latest_questions %}
-        {% for question in latest_questions %}
-            <p>{{ question.question_text }}</p>
-            <a href="{% url 'polls:detail' question.id %}">Vote Now</a>
-            <a href="{% url 'polls:results' question.id %}">Show Results</a>
-        {% endfor %}
-    {% else %}
-        <p>No Polls Available</p>
-    {% endif %}
+    <div class="text-center">
+        <h1 class="font-bold text-center m-5 underline">Pick a question</h1>
+        {% if latest_questions %}
+            {% for question in latest_questions %}
+                <div class="border border-blue-400 bg-blue-50 m-10 py-5 rounded-xl">
+                    <p class="mb-3">{{ question.question_text }}</p>
+                        <!-- Simply using anchor tag 
+                        <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">Vote Now</a>
+                        <a href="{% url 'polls:results' question.id %}">Show Results</a> -->
+                        <div class="flex justify-center gap-2">
+                            <button class="rounded-lg bg-green-500 hover:bg-green-700 text-gray-100 px-2 py-1 text-sm"><a href="{% url 'polls:detail' question.id %}">Vote Now</a></button>
+                            <button class="rounded-lg bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white px-2 py-1 border border-blue-500 hover:border-transparent text-sm"><a href="{% url 'polls:results' question.id %}">Show Results</a></button>
+                            <!-- Using form: -->
+                            <!-- <form action="{% url 'polls:detail' question.id %}" method='GET'>
+                                <button class="rounded-lg bg-green-500 hover:bg-green-700 text-gray-100 px-2 py-1 text-sm">Vote Now</button>
+                            </form> -->
+                            <!-- Using btn -->
+                            <!-- <button class="rounded-lg bg-green-500 hover:bg-green-700 text-gray-100 px-2 py-1 text-sm" onclick="location.href='question.id'">Vote Now</button>
+                            <button class="rounded-lg bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white px-2 py-1 border border-blue-500 hover:border-transparent text-sm">Show Results</button> -->
+                        </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No Polls Available</p>
+        {% endif %}
+    </div>
 {% endblock %}

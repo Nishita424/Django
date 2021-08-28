@@ -1,10 +1,29 @@
 {% extends 'base.html' %}
 
-{% block style %}
+<!-- {% block style %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
+<div class="flex flex-col gap-2 ml-3">
+    <button class="rounded-lg bg-gray-500 px-2 py-2 text-gray-100 text-sm hover:bg-gray-600 w-1/4"><a href="{% url 'polls:index' %}">Back To Polls</a></button>
+    <h1 class="text-pink-700 text-3xl my-5">{{ question.question_text }}</h1>
+    
+    {% if errorMessage %}
+        <p class="text-red-600 text-md underline">{{ errorMessage }}</p>
+    {% endif %}
+    
+    <form action="{% url 'polls:vote' question.id %}" method="POST">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+            <div class="flex gap-2 flex-start items-center">
+                <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}" />
+                <label>{{ choice.choice_text }}</label>
+            </div>
+        {% endfor %}
+        <button class="bg-green-600 hover:bg-green-500 text-sm text-white w-1/4 mt-5 py-2" action="submit">Vote</button>
+    </form>
+</div>
     
 {% endblock %}

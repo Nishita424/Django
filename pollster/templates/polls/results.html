@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 
-{% block style %}
+<!-- {% block style %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
-    <h1 class="header">{{ question.question_text }}</h1>
-    <ul class="question-results">
+    <h1 class="text-center text-3xl my-5">{{ question.question_text }}</h1>
+    <ul class="w-1/2 mx-auto">
         {% for choice in question.choice_set.all %}
-        <li class="flex-2">
+        <li class="flex justify-between border border-purple-400 bg-purple-200 p-3 my-3">
             <span>{{ choice.choice_text }}</span> 
-            <span>{{ choice.votes }}</span>
+            <span class="bg-purple-500 text-sm text-purple-100 rounded-full px-1 py-0.5">{{ choice.votes }} votes</span>
         </li>
         {% endfor %}
     </ul>
+    <div class="flex gap-2 my-7 justify-center">
+        <button class="rounded-lg bg-gray-500 px-2 py-2 text-gray-200 text-sm hover:bg-gray-600 w-1/5"><a href="{% url 'polls:index' %}">Back To Polls</a></button>
+        <button class="border border-green-400 rounded-lg bg-transparent px-2 py-1 text-pink-800 text-sm hover:text-gray-50 hover:bg-green-600 w-1/5" ><a href="{% url 'polls:detail' question.id %}">Vote Again?</a></button>
+    </div>
 {% endblock %}
