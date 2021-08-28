@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="flex flex-col gap-4 items-center">
+        <h1 class="font-serif text-2xl">Welcome to Pollster App</h1>
+        <span class="w-1/2">This is a Django startup app where you can vote for questions available</span>
+        <button class="font-sans bg-purple-900 hover:bg-purple-500 my-3 px-2 py-2 text-pink-200 rounded-lg"><a href="{% url 'polls:index' %}">View Available Polls</a></button>
+    </div>
+
+{% endblock %}

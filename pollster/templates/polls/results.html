@@ -6,7 +6,7 @@
 {% endblock %} -->
 
 {% block content %}
-    <h1 class="text-center text-3xl my-5">{{ question.question_text }}</h1>
+    <h1 class="text-center text-3xl my-5 font-serif">{{ question.question_text }}</h1>
     <ul class="w-1/2 mx-auto">
         {% for choice in question.choice_set.all %}
         <li class="flex justify-between border border-purple-400 bg-purple-200 p-3 my-3">

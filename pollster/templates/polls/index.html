@@ -7,8 +7,8 @@
 
 {% block content %}
     <div class="text-center">
-        <h1 class="font-bold text-center m-5 underline">Pick a question</h1>
         {% if latest_questions %}
+            <h1 class="font-bold text-center m-5 underline font-serif">Pick a question</h1>
             {% for question in latest_questions %}
                 <div class="border border-blue-400 bg-blue-50 m-10 py-5 rounded-xl">
                     <p class="mb-3">{{ question.question_text }}</p>
@@ -29,7 +29,9 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>No Polls Available</p>
+            <h1 class="font-serif m-3">No Polls Available</h1>
+            <button class="bg-transparent px-2 py-1 rounded-lg border border-blue-400 hover:bg-blue-400 hover:text-white text-sm text-gray-600 my-3"><a href="/admin/">Create Polls</a></button>
+            <div class="text-xs underline">[Only admins can create polls]</div>
         {% endif %}
     </div>
 {% endblock %}
